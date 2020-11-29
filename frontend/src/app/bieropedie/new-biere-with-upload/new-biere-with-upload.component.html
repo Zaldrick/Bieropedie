@@ -1,0 +1,33 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading" class="col-sm-6 offset-sm-3 mt-2">
+  <form [formGroup]="biereForm">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" placeholder="Nom de la biere" id="nom" formControlName="nom" class="form-control">
+    </div>
+    <button class="btn btn-success" type="button" (click)="filePicker.click()">Ajouter image</button>
+    <input type="file" #filePicker (change)="onImagePick($event)">
+    <div class="image-preview" *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="">
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input type="string" id="type" class="form-control" formControlName="type">
+    </div>
+    <div class="form-group">
+      <label for="pays">Pays</label>
+      <input type="string" id="pays" class="form-control" formControlName="pays">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description"
+                id="description"
+                cols="30" rows="7"
+                class="form-control"
+                formControlName="description"
+                placeholder="Décrivez la bière"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="biereForm.invalid">Valider</button>
+    <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>

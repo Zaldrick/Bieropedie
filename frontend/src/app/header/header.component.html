@@ -1,0 +1,32 @@
+<header>
+  <h1 class="header-title">
+    Bièropédie
+  </h1>
+  <ul class="header-navigation">
+    <li class="header-navigation-item" *ngIf="isAuth">
+      <a class="header-link" routerLink="/bieropedie/bieres" routerLinkActive="active">Toutes les Bières</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="isAuth">
+      <a class="header-link" routerLink="/bieropedie/new-biere" routerLinkActive="active">Ajouter une Bière</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="isAuth">
+      <a class="header-link" style="cursor: pointer" (click)="onBackToParts()" >Mes Notes</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="!isAuth">
+      <a class="header-link" routerLink="/bieropedie/auth/login" routerLinkActive="active">CONNEXION</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="!isAuth">
+      <a class="header-link" routerLink="/bieropedie/auth/signup" routerLinkActive="active">INSCRIPTION</a>
+    </li>
+  </ul>
+  <ul class="header-navigation nav-end">
+    <li class="header-navigation-item font-italic" *ngIf="isAuth">
+      <a class="header-link" style="cursor:pointer" (click)="onLogout()">DECONNEXION</a>
+    </li>
+  </ul>
+</header>
+<div class="hero-image" *ngIf="mode === 'list'">
+  <h2 class="hero-text">
+    Classement de Bières
+  </h2>
+</div>

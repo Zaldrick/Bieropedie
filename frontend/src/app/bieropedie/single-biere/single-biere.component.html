@@ -1,0 +1,16 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
+  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
+  <div class="single-biere-pane">
+    <img [src]="biere?.imageUrl" alt="">
+    <div class="single-biere-info">
+      <h1>{{ biere?.nom }}</h1>
+      <h2 class="single-biere-price">{{ biere?.type }}</h2>
+      <h2 class="single-biere-price">{{ biere?.pays }}</h2>
+      <p>{{ biere?.description }}</p>
+      <button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
+      <!--[disabled]="userId !== biere?.userId"-->
+    </div>
+  </div>
+</div>

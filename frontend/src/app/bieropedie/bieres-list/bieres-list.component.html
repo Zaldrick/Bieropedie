@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<p class="text-center" *ngIf="bieres.length <= 0 && !loading">Aucune bières</p>
+<div class="stuff-grid" *ngIf="bieres.length >= 0">
+  <div class="biere-pane"
+       *ngFor="let biere of bieres"
+       [ngClass]="{'open': biere._id === chosenId}"
+       [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
+       (click)="onProductClicked(biere._id)">
+    <div class="biere-info">
+      <h4>
+        {{ biere.nom }}
+      </h4>
+      <h6>{{ biere.type}}</h6>
+      <h6>{{ biere.pays}}</h6>
+    </div>
+  </div>
+</div>

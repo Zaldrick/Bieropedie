@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const noteSchema = mongoose.Schema({
-  biereId: {type: Schema.Types.ObjectId, ref: 'bieres'},
-  userId: {type: Schema.Types.ObjectId, ref: 'user'},
+  //biereId: {type: Schema.Types.ObjectId, ref: 'biere'},
+  //userId: {type: Schema.Types.ObjectId, ref: 'user'},
   
   notePackaging: { type: Number, required: true },
   remarquePackaging: { type: String },

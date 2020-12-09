@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<div *ngIf="!loading">
+<div *ngIf="!loading" class="flex-container">
   <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
   <div class="single-biere-pane">
     <img [src]="biere?.imageUrl" alt="">
@@ -8,9 +8,85 @@
       <h2 class="single-biere-price">{{ biere?.type }}</h2>
       <h2 class="single-biere-price">{{ biere?.pays }}</h2>
       <p>{{ biere?.description }}</p>
-      <button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
-      <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
-      <!--[disabled]="userId !== biere?.userId"-->
     </div>
   </div>
+  <div class="note-pane">
+      <div class="header-navigation-item" *ngIf="!showNote">
+        <mat-button-toggle (click)="addNote()" >Ajouter une Note</mat-button-toggle>
+      </div>
+        <form [formGroup]="noteForm" *ngIf="showNote">
+          <p class="champ-theme form-group">
+            <label class="categorie">Packaging</label>
+          <mat-form-field appearance="legacy" class="champ-note">
+            <mat-label>Note</mat-label>
+            <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="Gueule de la bouteille/canette" formControlName="notePackaging" class="form-control" name = "notePackaging">
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy" class="champ-remarque">
+            <mat-label>Remarque sur le Packaging</mat-label>
+            <input matInput type=text placeholder="Gueule de la bouteille/canette" matTooltip="Gueule de la bouteille/canette" formControlName="remarquePackaging" name="remarquePackaging" class="form-control">
+          </mat-form-field>
+          </p>
+          <p class="champ-theme form-group">
+            <label class="categorie">Odeur</label>
+          <mat-form-field appearance="legacy" class="champ-note">
+            <mat-label>Note</mat-label>
+            <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="Sasenbon ou sapulfion ?" formControlName="noteOdeur" name="noteOdeur" class="form-control">
+          </mat-form-field>
+          <mat-form-field appearance="legacy" class="champ-remarque">
+            <mat-label>Remarque sur l'odeur</mat-label>
+            <input matInput type=text placeholder="Sasenbon ou sapulfion ?" matTooltip="Sasenbon ou sapulfion ?" formControlName="remarqueOdeur" name="remarqueOdeur" class="form-control">
+          </mat-form-field>
+          </p>
+          <p class="champ-theme form-group">
+            <label class="categorie">Mise En Bouche</label>
+            <mat-form-field appearance="legacy" class="champ-note">
+              <mat-label>Note</mat-label>
+              <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="Le premier gout qui vient t'éclater le palais" formControlName="noteBouche" name="noteBouche" class="form-control">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" class="champ-remarque">
+              <mat-label>Remarque mise en bouche</mat-label>
+              <input matInput type=text placeholder="Le premier gout qui vient t'éclater le palais" matTooltip="Le premier gout qui vient t'éclater le palais" formControlName="remarqueBouche" name="remarqueBouche" class="form-control">
+            </mat-form-field>
+          </p>
+          <p class="champ-theme form-group">
+            <label class="categorie">Retour</label>
+            <mat-form-field appearance="legacy" class="champ-note">
+              <mat-label>Note</mat-label>
+              <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="" formControlName="noteRetour" name="noteRetour" class="form-control">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" class="champ-remarque">
+              <mat-label>Remarque Retour</mat-label>
+              <input matInput type=text placeholder="Le gout qu'il te reste sur la fin de ta gorgé !" matTooltip="Le gout qu'il te reste sur la fin de ta gorgé !" formControlName="remarqueRetour" name="remarqueRetour" class="form-control">
+            </mat-form-field>
+          </p>
+          <p class="champ-theme form-group">
+            <label class="categorie">Endurance</label>
+            <mat-form-field appearance="legacy" class="champ-note">
+              <mat-label>Note</mat-label>
+              <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="Après quelques gorgés, elle t'écoeure déjà ou tu pourrais en boire toute la soirée ?" formControlName="noteEndurance" name="noteEndurance" class="form-control">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" class="champ-remarque">
+              <mat-label>Remarque Endurance</mat-label>
+              <input matInput type=text placeholder="elle t'écoeure déjà ou tu pourrais en boire toute la soirée ?" matTooltip="Après quelques gorgés, elle t'écoeure déjà ou tu pourrais en boire toute la soirée ?" formControlName="remarqueEndurance" name="remarqueEndurance" class="form-control">
+            </mat-form-field>
+          </p>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="noteForm.invalid">Ajouter la note</button>
+          <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
+        </form>
+Notes : 
+      <div class="note-pane"
+      *ngFor="let note of notes">
+      <div class="biere-info">
+        <h4>
+          {{ note.userId }}
+        </h4>
+        <h6>Note endurance : {{ note.noteEndurance}}</h6>
+        <h6>Note Mise en bouche : {{ note.noteMiseEnBouche}}</h6>
+      </div>
+      </div>
+      <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
+      [disabled]="userId !== biere?.userId"-->
+
 </div>

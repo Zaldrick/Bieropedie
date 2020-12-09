@@ -5,7 +5,7 @@ const Biere = require('./models/biere');
 const note = require('./models/note');
 const app = express();
 const bieresRoutes = require('./routes/bieres');
-const notesRoutes = require('./routes/note');
+const notesRoutes = require('./routes/notes');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/bieres', bieresRoutes);
-app.use('/api/note', notesRoutes);
+app.use('/api/notes', notesRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;

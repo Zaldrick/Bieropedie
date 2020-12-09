@@ -9,9 +9,9 @@
     <li class="header-navigation-item" *ngIf="isAuth">
       <a class="header-link" routerLink="/bieropedie/new-biere" routerLinkActive="active">Ajouter une Bière</a>
     </li>
-    <li class="header-navigation-item" *ngIf="isAuth">
-      <a class="header-link" style="cursor: pointer" (click)="onBackToParts()" >Mes Notes</a>
-    </li>
+    <!--<li class="header-navigation-item" *ngIf="isAuth">
+      <a class="header-link" style="cursor: pointer" (click)="mesNotes()" >Mes Notes</a>
+    </li>-->
     <li class="header-navigation-item" *ngIf="!isAuth">
       <a class="header-link" routerLink="/bieropedie/auth/login" routerLinkActive="active">CONNEXION</a>
     </li>

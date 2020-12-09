@@ -2,10 +2,25 @@ const Note = require('../models/note');
 const fs = require('fs');
 
 exports.createNote = (req, res, next) => {
-  const noteObject = JSON.parse(req.body.note);
-  delete noteObject._id;
+ //const noteObject = JSON.parse(req.body);
+  //delete noteObject._id;
   const note = new Note({
-    ...noteObject,
+  biereId:  req.body.biereId,
+  userId: req.body.userId,
+  notePackaging: req.body.notePackaging,
+  remarquePackaging: req.body.remarquePackaging,
+
+  noteOdeur:req.body.noteOdeur,
+  remarqueOdeur:req.body.remarqueOdeur,
+  
+  noteMiseEnBouche:req.body.noteMiseEnBouche,
+  remarqueMiseEnBouche: req.body.remarqueMiseEnBouche,
+  
+  noteRetour:req.body.noteRetour,
+  remarqueRetour: req.body.remarqueRetour,
+  
+  noteEndurance:req.body.noteEndurance,
+  remarqueEndurance:req.body.remarqueEndurance
   });
   note.save()
     .then(() => res.status(201).json({ message: 'Note ajouté !'}))
@@ -27,11 +42,25 @@ exports.getOneNote = (req, res, next) => {
     }
   );
 };
+exports.getAllNotes = (req, res, next) => {
+  Note.find().then(
+    (notes) => {
+      res.status(200).json(notes);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
 
 
-exports.getNotesByBiere = (req, res, next) => {
+
+exports.getAllNotesByBiere = (req, res, next) => {
   Note.find({
-    biere_id: req.params.id
+    biereId: req.params.id
   }).then(
     (note) => {
       res.status(200).json(note);
@@ -44,8 +73,7 @@ exports.getNotesByBiere = (req, res, next) => {
     }
   );
 };
-
-
+/*
 exports.modifyNote = (req, res, next) => {
   const noteObject = req.file ?
     {
@@ -68,17 +96,4 @@ exports.deleteNote = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
-
-exports.getAllNotes = (req, res, next) => {
-  Note.find().then(
-    (notes) => {
-      res.status(200).json(notes);
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-};
+*/

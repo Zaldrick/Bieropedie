@@ -17,6 +17,7 @@ import { ModifyBiereWithUploadComponent } from './bieropedie/modify-biere-with-u
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { NoteComponent } from './note/note.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { NoteComponent } from './note/note.component';
     SignupComponent,
     NewBiereWithUploadComponent,
     ModifyBiereWithUploadComponent,
-    NoteComponent
+    NoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import { NoteComponent } from './note/note.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

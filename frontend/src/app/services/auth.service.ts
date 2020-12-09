@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { GlobalConstants } from '../common/global-constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +18,7 @@ export class AuthService {
   createNewUser(name: string, password: string) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:3000/api/auth/signup',
+        GlobalConstants.apiURL+'/api/auth/signup',
         { name: name, password: password })
         .subscribe(
           () => {
@@ -42,7 +42,7 @@ export class AuthService {
   login(name: string, password: string) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:3000/api/auth/login',
+        GlobalConstants.apiURL + '/api/auth/login',
         { name: name, password: password })
         .subscribe(
           (authData: { token: string, userId: string }) => {

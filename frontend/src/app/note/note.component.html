@@ -1,1 +1,26 @@
-<p>note works!</p>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
+  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
+  <div class="single-biere-pane">
+    <div class="single-biere-info">
+      <!--<h1>{{ note?.nom }}</h1>
+      <h2 class="single-biere-price">{{ biere?.type }}</h2>
+      <h2 class="single-biere-price">{{ biere?.pays }}</h2>
+      <p>{{ biere?.description }}</p>
+      <li class="header-navigation-item">
+        <a class="header-link" routerLink="/bieropedie/new-note" routerLinkActive="active">Ajouter une Note</a>
+      </li>
+
+      <div class="note-pane"
+      *ngFor="let note of notes"
+      [ngClass]="{'open': biere._id === chosenId}"
+      [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
+      (click)="onProductClicked(biere._id)">-->
+
+
+      <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
+      [disabled]="userId !== biere?.userId"-->
+    </div>
+  </div>
+</div>

@@ -17,7 +17,6 @@ export class ModifyBiereWithUploadComponent implements OnInit {
   public biereForm: FormGroup;
   public biere: Biere;
   public loading = false;
-  public part: number;
   public userId: string;
   public imagePreview: string;
   public errorMessage: string;
@@ -31,7 +30,6 @@ export class ModifyBiereWithUploadComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.state.mode$.next('form');
     this.userId = this.auth.userId;
     this.route.params.subscribe(
       (params) => {

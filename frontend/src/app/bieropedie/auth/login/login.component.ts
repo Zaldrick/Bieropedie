@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
               private state: StateService) { }
 
   ngOnInit() {
-    this.state.mode$.next('form');
     this.loginForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       password: [null, Validators.required]

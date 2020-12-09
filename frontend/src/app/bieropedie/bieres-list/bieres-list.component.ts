@@ -13,11 +13,9 @@ import { Router } from '@angular/router';
 export class BieresListComponent implements OnInit, OnDestroy {
 
   public bieres: Biere[] = [];
-  public part: number;
   public loading: boolean;
 
   private bieresSub: Subscription;
-  private partSub: Subscription;
 
   constructor(private state: StateService,
               private bieresService: BieresService,
@@ -25,16 +23,10 @@ export class BieresListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loading = true;
-    this.state.mode$.next('list');
     this.bieresSub = this.bieresService.bieres$.subscribe(
       (bieres) => {
         this.bieres = bieres;
         this.loading = false;
-      }
-    );
-    this.partSub = this.state.part$.subscribe(
-      (part) => {
-        this.part = part;
       }
     );
     this.bieresService.getBieres();
@@ -46,7 +38,6 @@ export class BieresListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.bieresSub.unsubscribe();
-    this.partSub.unsubscribe();
   }
 
 }

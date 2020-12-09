@@ -16,7 +16,6 @@ export class NewBiereWithUploadComponent implements OnInit {
 
   public biereForm: FormGroup;
   public loading = false;
-  public part: number;
   public userId: string;
   public imagePreview: string;
   public errorMessage: string;
@@ -28,7 +27,6 @@ export class NewBiereWithUploadComponent implements OnInit {
               private auth: AuthService) { }
 
   ngOnInit() {
-    this.state.mode$.next('form');
     this.biereForm = this.formBuilder.group({
       nom: [null, Validators.required],
       type: [null, Validators.required],

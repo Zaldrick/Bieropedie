@@ -21,7 +21,6 @@ export class SignupComponent implements OnInit {
               private state: StateService) { }
 
   ngOnInit() {
-    this.state.mode$.next('form');
     this.signupForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       password: [null, Validators.required]

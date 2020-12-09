@@ -5,7 +5,4 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StateService {
-  public part$ = new BehaviorSubject<number>(0);
-  public part = 0;
-  public mode$ = new BehaviorSubject<string>('');
 }

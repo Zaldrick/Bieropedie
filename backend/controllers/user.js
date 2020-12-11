@@ -46,3 +46,12 @@ User.findOne({ name: req.body.name })
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+exports.getName = (req, res, next) => {
+  User.findOne({ name: req.body.id })
+      .then(user => {
+        console.log(user);
+        res.status(200).json(user);
+      })
+      .catch(error => res.status(500).json({ error }));
+  };

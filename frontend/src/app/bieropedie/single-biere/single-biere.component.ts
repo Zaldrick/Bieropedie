@@ -44,17 +44,27 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
         );
       }
     );
+
+
     this.route.params.subscribe(
       (params: Params) => {
         this.notesService.getAllNotesByBiere(params.id).then(
           (allNotes: Note[]) => {
+
             this.loading = false;
             this.notes = allNotes;
+            
+            /*this.notes.forEach( (currentValue, index) => {
+               this.auth.getName(currentValue.userId).then(
+                (name: string) => {
+                  this.notes[index].userId = name;
+                }
+              );
+            });*/
           }
-        );
-      }
-    );
-
+          );
+        }
+      )
     this.noteForm = this.formBuilder.group({
       userId : [null],
       biereId : [null],
@@ -71,6 +81,16 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
     });
     this.userId = this.auth.userId;
     }
+
+  getBlaze(userId:string)
+  {
+   this.auth.getName(userId).then(
+      (name: string) => {
+        return "test";
+      }
+    );
+  }
+
 
   onGoBack() {
     this.router.navigate(['/bieropedie/bieres']);

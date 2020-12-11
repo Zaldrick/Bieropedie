@@ -75,16 +75,16 @@
           <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
         </form>
 Notes : 
-      <div class="note-pane"
+      <mat-card class="note-pane"
       *ngFor="let note of notes">
       <div class="biere-info">
         <h4>
-          {{ note.userId }}
+          {{ getBlaze(note.userId) }}
         </h4>
         <h6>Note endurance : {{ note.noteEndurance}}</h6>
         <h6>Note Mise en bouche : {{ note.noteMiseEnBouche}}</h6>
       </div>
-      </div>
+      </mat-card>
       <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
       <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
       [disabled]="userId !== biere?.userId"-->

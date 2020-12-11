@@ -63,4 +63,21 @@ export class AuthService {
     this.userId = null;
     this.token = null;
   }
+
+
+  getName(id: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get(GlobalConstants.apiURL + '/api/auth/' + id).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+
+
 }

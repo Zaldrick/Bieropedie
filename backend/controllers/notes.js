@@ -26,7 +26,7 @@ exports.createNote = (req, res, next) => {
     .then(() => res.status(201).json({ message: 'Note ajouté !'}))
     .catch(error => res.status(400).json({ error }));
 };
-
+ 
 exports.getOneNote = (req, res, next) => {
   Note.findOne({
     _id: req.params.id

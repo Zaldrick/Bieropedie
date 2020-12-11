@@ -17,7 +17,7 @@ exports.getOneBiere = (req, res, next) => {
   Biere.findOne({
     _id: req.params.id
   }).then(
-    (biere) => {
+    (biere) => { 
       res.status(200).json(biere);
     }
   ).catch(

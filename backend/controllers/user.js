@@ -48,7 +48,7 @@ User.findOne({ name: req.body.name })
 };
 
 exports.getName = (req, res, next) => {
-  User.findOne({ name: req.body.id })
+  User.findById({ name: req.body.id })
       .then(user => {
         console.log(user);
         res.status(200).json(user);

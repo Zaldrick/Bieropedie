@@ -6,7 +6,7 @@ exports.createBiere = (req, res, next) => {
   delete biereObject._id;
   const biere = new Biere({
     ...biereObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    imageUrl: `/images/${req.file.filename}`
   });
   biere.save()
     .then(() => res.status(201).json({ message: 'Bière ajouté !'}))
@@ -33,7 +33,7 @@ exports.modifyBiere = (req, res, next) => {
   const biereObject = req.file ?
     {
       ...JSON.parse(req.body.biere),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      imageUrl: `/images/${req.file.filename}`
     } : { ...req.body };
   Biere.updateOne({ _id: req.params.id }, { ...biereObject, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Objet modifié !'}))

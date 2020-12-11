@@ -19,6 +19,9 @@ export class BieresService {
       (bieres: Biere[]) => {
         if (bieres) {
           this.bieres = bieres;
+          this.bieres.forEach( (currentValue, index) => {
+            this.bieres[index].imageUrl = GlobalConstants.apiURL + this.bieres[index].imageUrl;
+              });
           this.emitBieres();
         }
       },
@@ -35,7 +38,8 @@ export class BieresService {
   getBiereById(id: string) {
     return new Promise((resolve, reject) => {
       this.http.get(GlobalConstants.apiURL + '/api/bieres/' + id).subscribe(
-        (response) => {
+        (response:Biere) => {
+          response.imageUrl = GlobalConstants.apiURL + response.imageUrl; 
           resolve(response);
         },
         (error) => {
@@ -91,7 +95,7 @@ export class BieresService {
     return new Promise((resolve, reject) => {
       let biereData: Biere | FormData;
       if (typeof image === 'string') {
-        biere.imageUrl = image;
+        biere.imageUrl = GlobalConstants.apiURL + image;
         biereData = biere;
       } else {
         biereData = new FormData();

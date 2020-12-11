@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { mimeType } from '../mime-type.validator';
 import { Biere } from '../../models/Biere.model';
+import { GlobalConstants } from 'src/app/common/global-constants';
 
 @Component({
   selector: 'app-modify-biere-with-upload',
@@ -41,7 +42,7 @@ export class ModifyBiereWithUploadComponent implements OnInit {
               type: [biere.type, Validators.required],
               pays: [biere.pays, Validators.required],
               description: [biere.description, Validators.required],
-              image: [biere.imageUrl, Validators.required, mimeType]
+              image: [GlobalConstants.apiURL + biere.imageUrl, Validators.required, mimeType]
             });
             this.imagePreview = biere.imageUrl;
             this.loading = false;

@@ -4,7 +4,7 @@ import { BieresService } from '../../services/bieres.service';
 import { Subscription } from 'rxjs';
 import { Biere } from '../../models/Biere.model';
 import { Router } from '@angular/router';
-
+import { GlobalConstants } from 'src/app/common/global-constants';
 @Component({
   selector: 'app-bieres-list',
   templateUrl: './bieres-list.component.html',

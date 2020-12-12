@@ -6,7 +6,7 @@ exports.createBiere = (req, res, next) => {
   delete biereObject._id;
   const biere = new Biere({
     ...biereObject,
-    imageUrl: `/images/${req.file.filename}`
+    imageUrl: `/api/images/${req.file.filename}`
   });
   biere.save()
     .then(() => res.status(201).json({ message: 'Bière ajouté !'}))
@@ -33,7 +33,7 @@ exports.modifyBiere = (req, res, next) => {
   const biereObject = req.file ?
     {
       ...JSON.parse(req.body.biere),
-      imageUrl: `/images/${req.file.filename}`
+      imageUrl: `/api/images/${req.file.filename}`
     } : { ...req.body };
   Biere.updateOne({ _id: req.params.id }, { ...biereObject, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Objet modifié !'}))
@@ -43,7 +43,7 @@ exports.modifyBiere = (req, res, next) => {
 exports.deleteBiere = (req, res, next) => {
   Biere.findOne({ _id: req.params.id })
     .then(biere => {
-      const filename = biere.imageUrl.split('/images/')[1];
+      const filename = biere.imageUrl.split('/api/images/')[1];
       fs.unlink(`images/${filename}`, () => {
         Biere.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Objet supprimé !'}))

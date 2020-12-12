@@ -84,11 +84,11 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
 
   getBlaze(userId:string)
   {
-   this.auth.getName(userId).then(
-      (name: string) => {
-        return "test";
-      }
-    );
+   //this.auth.getName(userId).then(
+     // (name: string) => {
+        return userId;
+      //}
+    //);
   }
 
 

@@ -2,4 +2,3 @@ node_modules
 .idea
 package-lock.json
 .vscode
-frontend/src/app/common/global-constants.ts

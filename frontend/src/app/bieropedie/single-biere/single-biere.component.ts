@@ -87,7 +87,7 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
    //this.auth.getName(userId).then(
      // (name: string) => {
         return userId;
-      //}
+     // }
     //);
   }
 

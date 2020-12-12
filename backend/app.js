@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   });
 
 app.use(bodyParser.json());
-app.use('/api/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/bieres', bieresRoutes);
 app.use('/api/notes', notesRoutes);
 app.use('/api/auth', userRoutes);

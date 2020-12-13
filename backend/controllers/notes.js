@@ -6,7 +6,7 @@ exports.createNote = (req, res, next) => {
   //delete noteObject._id;
   const note = new Note({
   biereId:  req.body.biereId,
-  userId: req.body.userId,
+  userName: req.body.userName,
   notePackaging: req.body.notePackaging,
   remarquePackaging: req.body.remarquePackaging,
 
@@ -20,7 +20,8 @@ exports.createNote = (req, res, next) => {
   remarqueRetour: req.body.remarqueRetour,
   
   noteEndurance:req.body.noteEndurance,
-  remarqueEndurance:req.body.remarqueEndurance
+  remarqueEndurance:req.body.remarqueEndurance,
+  remarqueApparence:req.body.remarqueApparence
   });
   note.save()
     .then(() => res.status(201).json({ message: 'Note ajouté !'}))

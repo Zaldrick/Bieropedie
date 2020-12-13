@@ -35,6 +35,7 @@ User.findOne({ name: req.body.name })
         }
         res.status(200).json({
             userId: user._id,
+            userName:user.name,
             token: jwt.sign(
             { userId: user._id },
             'RANDOM_TOKEN_SECRET',
@@ -46,12 +47,39 @@ User.findOne({ name: req.body.name })
     })
     .catch(error => res.status(500).json({ error }));
 };
-
+/*
 exports.getName = (req, res, next) => {
-  User.findById({ name: req.body.id })
+  User.findOne({ _id: req.body.id })
       .then(user => {
-        console.log(user);
-        res.status(200).json(user);
-      })
-      .catch(error => res.status(500).json({ error }));
-  };
+      if (!user) {
+          return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+      }
+      res.status(200).json(user.name);
+      }
+      ).catch(
+        (error) => {
+          res.status(404).json({
+            error: error
+          });
+        }
+      );
+    };
+
+exports.getAllUsersNames = (req, res, next) => {
+  User.find().then(
+    (users) => {
+      var userMap = {};
+      users.forEach(function(user) {
+        userMap[user._id] = user.name;
+      });
+      res.status(200).json(userMap);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+*/

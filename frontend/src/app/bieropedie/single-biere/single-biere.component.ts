@@ -19,10 +19,13 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
   public biere: Biere;
   public loading: boolean;
   public userId: string;
+  public userName: string;
   public showNote = false ; // hidden by default
   public errorMessage: string;
   public noteForm: FormGroup;
   public notes: Note[] = [];
+  public totalNote : number =0;
+  public usersNames: string[] = [];
   constructor(private state: StateService,
               private router: Router,
               private route: ActivatedRoute,
@@ -34,6 +37,13 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loading = true;
     this.userId = this.auth.userId ? this.auth.userId : 'userID40282382';
+    this.userName = this.auth.userName ? this.auth.userName : 'Gars Random';
+/*     this.auth.getAllUsersNames().then(
+      (usersNames: string[]) => {
+        this.usersNames = usersNames;
+      }
+    );
+    console.log(this.usersNames);*/
     this.route.params.subscribe(
       (params: Params) => {
         this.bieresService.getBiereById(params.id).then(
@@ -53,44 +63,44 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
 
             this.loading = false;
             this.notes = allNotes;
-            
-            /*this.notes.forEach( (currentValue, index) => {
-               this.auth.getName(currentValue.userId).then(
-                (name: string) => {
-                  this.notes[index].userId = name;
-                }
-              );
-            });*/
+           
+            this.notes.forEach( (currentValue, index) => {
+  
+          this.totalNote+=this.getMoyenne(currentValue);
+            });
+            this.totalNote=this.totalNote/this.notes.length;
           }
+
+
           );
         }
       )
+
     this.noteForm = this.formBuilder.group({
-      userId : [null],
+      userName : [null],
       biereId : [null],
       notePackaging : [null],
-      remarquePackaging : [null],
       noteEndurance : [null],
       noteBouche : [null],
       noteOdeur : [null],
       noteRetour : [null],
+      remarquePackaging : [null],
       remarqueEndurance : [null],
       remarqueBouche : [null],
       remarqueOdeur : [null],
       remarqueRetour : [null],
-    });
-    this.userId = this.auth.userId;
+      remarqueApparence : [null],
+    });    
     }
 
   getBlaze(userId:string)
   {
-   //this.auth.getName(userId).then(
-     // (name: string) => {
-        return userId;
-     // }
-    //);
+    return this.usersNames[userId];
   }
 
+  getMoyenne(note:Note){
+    return (note.notePackaging+note.noteOdeur*3+note.noteMiseEnBouche*5+note.noteRetour*5+note.noteEndurance*5)/19;
+  }
 
   onGoBack() {
     this.router.navigate(['/bieropedie/bieres']);
@@ -120,7 +130,11 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.loading = true;
     const note = new Note();
-    note.userId = this.userId;
+    /*this.bieresService.getBiereById(this.userId).then(
+    (name: string) => {
+      note.userName = name;
+    });*/
+    note.userName = this.userName;
     note.biereId = this.biere._id;
     note.remarquePackaging = this.noteForm.get('remarquePackaging').value;
     note.notePackaging = this.noteForm.get('notePackaging').value;
@@ -132,11 +146,12 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
     note.remarqueMiseEnBouche = this.noteForm.get('remarqueBouche').value;
     note.remarqueOdeur = this.noteForm.get('remarqueOdeur').value;
     note.remarqueRetour = this.noteForm.get('remarqueRetour').value;
+    note.remarqueApparence = this.noteForm.get('remarqueApparence').value;
     this.notesService.createNewNote(note).then(
       () => {
         this.noteForm.reset();
         this.loading = false;
-        this.router.navigate(['/bieropedie/biere/' + this.biere._id]);
+        this.router.navigate(['/bieropedie/bieres']);
       },
       (error) => {
         this.loading = false;

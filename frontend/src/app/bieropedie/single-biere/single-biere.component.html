@@ -1,10 +1,12 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
+
 <div *ngIf="!loading" class="flex-container">
   <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
   <div class="single-biere-pane">
     <img [src]="biere?.imageUrl" alt="">
     <div class="single-biere-info">
       <h1>{{ biere?.nom }}</h1>
+      <h1>{{ this.totalNote | number: '1.0-0'}}/100</h1>
       <h2 class="single-biere-price">{{ biere?.type }}</h2>
       <h2 class="single-biere-price">{{ biere?.pays }}</h2>
       <p>{{ biere?.description }}</p>
@@ -12,7 +14,7 @@
   </div>
   <div class="note-pane">
       <div class="header-navigation-item" *ngIf="!showNote">
-        <mat-button-toggle (click)="addNote()" >Ajouter une Note</mat-button-toggle>
+        <mat-button-toggle (click)="addNote()" >Ajouter une Note {{this.userName}} !</mat-button-toggle>
       </div>
         <form [formGroup]="noteForm" *ngIf="showNote">
           <p class="champ-theme form-group">
@@ -21,12 +23,20 @@
             <mat-label>Note</mat-label>
             <input matInput type=number min=0 max=100 placeholder="/100" matTooltip="Gueule de la bouteille/canette" formControlName="notePackaging" class="form-control" name = "notePackaging">
           </mat-form-field>
-
           <mat-form-field appearance="legacy" class="champ-remarque">
             <mat-label>Remarque sur le Packaging</mat-label>
             <input matInput type=text placeholder="Gueule de la bouteille/canette" matTooltip="Gueule de la bouteille/canette" formControlName="remarquePackaging" name="remarquePackaging" class="form-control">
           </mat-form-field>
           </p>
+
+          <p class="champ-theme form-group">
+            <label class="categorie">Apparence</label>
+          <mat-form-field appearance="legacy" class="champ-remarque">
+            <mat-label>Remarque sur l'apparence</mat-label>
+            <input matInput type=text placeholder="Y'a quoi dans le verre ? De la mousse ? du dépot ?" matTooltip="Y'a quoi dans le verre ? De la mousse ? du dépot ?" formControlName="remarqueApparence" name="remarqueApparence" class="form-control">
+          </mat-form-field>
+          </p>
+
           <p class="champ-theme form-group">
             <label class="categorie">Odeur</label>
           <mat-form-field appearance="legacy" class="champ-note">
@@ -74,19 +84,32 @@
           <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="noteForm.invalid">Ajouter la note</button>
           <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
         </form>
-Notes : 
       <mat-card class="note-pane"
       *ngFor="let note of notes">
       <div class="biere-info">
-        <h4>
-          {{ getBlaze(note.userId) }}
-        </h4>
-        <h6>Note endurance : {{ note.noteEndurance}}</h6>
-        <h6>Note Mise en bouche : {{ note.noteMiseEnBouche}}</h6>
+        <h4>{{note.userName}}</h4>
+        <h2>{{getMoyenne(note) | number: '1.0-0'}}/100</h2>
+        <p>Packaging : {{ note.notePackaging}}/100<br>
+          {{note.remarquePackaging}}</p>
+        
+        <p>Apparence :{{ note.remarqueApparence}}</p>
+      
+        <p>Odeur : {{ note.noteOdeur}}/100<br>
+        {{note.remarqueOdeur}}</p>
+    
+        <p>Mise en Bouche : {{ note.noteMiseEnBouche}}/100<br>
+        {{note.remarqueMiseEnBouche}}</p>
+      
+        <p>Retour {{ note.noteRetour}}/100<br>
+        {{note.remarqueRetour}}</p>
+
+        <p>Endurance : {{ note.noteEndurance}}/100<br>
+        {{note.remarqueEndurance}}</p>
       </div>
       </mat-card>
       <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
       <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
       [disabled]="userId !== biere?.userId"-->
 
+  </div>
 </div>

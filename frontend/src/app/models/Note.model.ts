@@ -1,7 +1,7 @@
 export class Note {
   _id: string;
   biereId: string;
-  userId: string;
+  userName: string;
   notePackaging: number;
   remarquePackaging: string;
   noteOdeur: number;
@@ -12,4 +12,5 @@ export class Note {
   remarqueRetour: string;
   noteEndurance: number;
   remarqueEndurance: string;
+  remarqueApparence: string;
 }

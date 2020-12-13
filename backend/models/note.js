@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const noteSchema = mongoose.Schema({
   biereId: {type: String, required: true },
-  userId: {type: String, required: true },
+  userName: {type: String, required: true },
   
   notePackaging: { type: Number, required: true },
   remarquePackaging: { type: String },
@@ -19,6 +19,7 @@ const noteSchema = mongoose.Schema({
   
   noteEndurance: { type: Number, required: true },
   remarqueEndurance: { type: String },
+  remarqueApparence: { type: String }
 });
 
 module.exports = mongoose.model('Note', noteSchema);

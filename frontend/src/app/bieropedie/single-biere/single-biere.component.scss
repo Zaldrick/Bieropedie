@@ -6,7 +6,15 @@
 
 .note-pane {
   position: relative;
-  width: 40%;
+  width: auto;
+  margin: auto;
+  margin: 10px;
+  padding: 20px;
+}
+
+.note-panes {
+  position: relative;
+  width: auto;
   margin: auto;
   margin: 10px;
   padding: 20px;

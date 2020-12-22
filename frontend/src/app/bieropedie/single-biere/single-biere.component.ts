@@ -137,7 +137,7 @@ export class SingleBiereComponent implements OnInit, OnDestroy {
     note.userName = this.userName;
     note.biereId = this.biere._id;
     note.remarquePackaging = this.noteForm.get('remarquePackaging').value;
-    note.notePackaging = this.noteForm.get('notePackaging').value;
+    note.notePackaging = this.noteForm.get('notePackaging').value;  
     note.noteEndurance = this.noteForm.get('noteEndurance').value;
     note.noteMiseEnBouche = this.noteForm.get('noteBouche').value;
     note.noteOdeur = this.noteForm.get('noteOdeur').value;

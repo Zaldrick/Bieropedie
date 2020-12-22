@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 
 <div *ngIf="!loading" class="flex-container">
-  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
+  <!--<button class="btn btn-link test" (click)="onGoBack()"><< Retour</button>-->
   <div class="single-biere-pane">
     <img [src]="biere?.imageUrl" alt="">
     <div class="single-biere-info">
@@ -11,12 +11,14 @@
       <h2 class="single-biere-price">{{ biere?.pays }}</h2>
       <p>{{ biere?.description }}</p>
     </div>
+    <div class="header-navigation-item addNote" *ngIf="!showNote">
+      <mat-button-toggle (click)="addNote()" >Ajouter une Note {{this.userName}} !</mat-button-toggle>
+    </div>
   </div>
-  <div class="note-pane">
-      <div class="header-navigation-item" *ngIf="!showNote">
-        <mat-button-toggle (click)="addNote()" >Ajouter une Note {{this.userName}} !</mat-button-toggle>
-      </div>
-        <form [formGroup]="noteForm" *ngIf="showNote">
+
+  <div class="nouvelle-note-pane" *ngIf="showNote">
+
+        <form [formGroup]="noteForm" >
           <p class="champ-theme form-group">
             <label class="categorie">Packaging</label>
           <mat-form-field appearance="legacy" class="champ-note">
@@ -84,29 +86,31 @@
           <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="noteForm.invalid">Ajouter la note</button>
           <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
         </form>
-      <mat-card class="note-pane"
-      *ngFor="let note of notes">
-      <div class="biere-info">
+      </div>
+
+
+      <div class="stuff-grid" *ngIf="notes.length >= 0 && !showNote">
+      <div class="note-pane"  *ngFor="let note of notes">
+        <div class="note-partie0">
         <h4>{{note.userName}}</h4>
         <h2>{{getMoyenne(note) | number: '1.0-0'}}/100</h2>
-        <p>Packaging : {{ note.notePackaging}}/100<br>
-          {{note.remarquePackaging}}</p>
+        </div>
+        <div class="note-partie1"><b>Packaging : </b>{{note.notePackaging}}/100<br>
+          {{note.remarquePackaging}}</div>
         
-        <p>Apparence :{{ note.remarqueApparence}}</p>
+        <div class="note-partie2"><b>Apparence : </b>{{note.remarqueApparence}}</div>
       
-        <p>Odeur : {{ note.noteOdeur}}/100<br>
-        {{note.remarqueOdeur}}</p>
+        <div class="note-partie1"><b>Odeur : </b>{{note.noteOdeur}}/100<br>
+        {{note.remarqueOdeur}}</div>
     
-        <p>Mise en Bouche : {{ note.noteMiseEnBouche}}/100<br>
-        {{note.remarqueMiseEnBouche}}</p>
+        <div class="note-partie2"><b>Mise en Bouche : </b>{{note.noteMiseEnBouche}}/100<br>
+        {{note.remarqueMiseEnBouche}}</div>
       
-        <p>Retour {{ note.noteRetour}}/100<br>
-        {{note.remarqueRetour}}</p>
-
-        <p>Endurance : {{ note.noteEndurance}}/100<br>
-        {{note.remarqueEndurance}}</p>
-      </div>
-      </mat-card>
+        <div class="note-partie1"><b>Retour : </b>{{note.noteRetour}}/100<br>
+        {{note.remarqueRetour}}</div>
+        <div class="note-partie2"><b>Endurance : </b>{{note.noteEndurance}}/100<br>
+        {{note.remarqueEndurance}}</div>
+    </div>
       <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
       <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
       [disabled]="userId !== biere?.userId"-->

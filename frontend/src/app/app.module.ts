@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { NoteComponent } from './note/note.component';
 import { MaterialModule } from './material/material.module';
+import { JoyeuxAnniversaireComponent } from './joyeux-anniversaire/joyeux-anniversaire.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MaterialModule } from './material/material.module';
     NewBiereWithUploadComponent,
     ModifyBiereWithUploadComponent,
     NoteComponent,
+    JoyeuxAnniversaireComponent,
   ],
   imports: [
     BrowserModule,

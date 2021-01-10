@@ -1,0 +1,22 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading" class="flex-container">
+  <!--<button class="btn btn-link test" (click)="onGoBack()"><< Retour</button>-->
+  <div class="single-biere-pane">
+    <img src="../../assets/katakuri.png"/>
+    <div class="single-biere-info">
+      <h1>Katakuri Pale Ale</h1>
+      <h1>100/100</h1>
+      <h2 class="single-biere-price">Blonde Mochi</h2>
+      <h2 class="single-biere-price">Île du Blé</h2>
+      <p>Une bière pour commémorer l'anniversaire de M.Domingos ! 
+        <span *ngIf="this.userName == 'Nico'">Accompagnée de <a href="/assets/6Gf7g0nsUUlvIHJjlqcE9TLzJVVhHK10rnDyCTyBWB3Bwvzu4AKS0ltrXIdNXjxREXnp8P9XEj2b0ZmlKqR64mxXgikgM2ZSsfsCU6srS8dEM5mfo1bvZAqn.pdf" 
+            download="Billets">3 places</a> pour le Concert de One Pièce !</span></p>
+    </div>
+    </div>
+    <div class="stuff-grid">
+        </div>
+      <!--<button class="btn btn-success m-1" (click)="onModify()" >Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()" >Supprimer</button>
+      [disabled]="userId !== biere?.userId"-->
+
+</div>

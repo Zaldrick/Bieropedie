@@ -1,0 +1,143 @@
+.single-biere-pane {
+    position: relative;
+    width: 35%;
+    margin: auto;
+    background-color : #111111;
+   // background: url('../../../assets/bierewood.png') no-repeat 0 100% ;
+  }
+  
+  .nouvelle-note-pane {
+    position: relative;
+    width: auto;
+    margin: auto;
+    margin: 10px;
+    padding: 20px;
+    background-color: #888888;
+    border-radius: 15px;
+  }
+  
+  .note-panes {
+    position: relative;
+    width: auto;
+    margin: auto;
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  img {
+    position: relative;
+    height: 40vh;
+  }
+  
+  .single-biere-info {
+    width: 100%;
+  }
+  
+  .single-biere-note {
+    color: #6eb5ff;
+  }
+  .flex-container {
+    display: flex;
+    //background-color : #333333;
+  }
+  
+  .flex-container > div {
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    color: white;
+    border-radius:20px;
+  
+  }
+  .champ-note {
+    width: 11vh;
+    padding-right: 2vh;
+    padding-left: 2vh;
+    color: white !important;
+  }
+  
+  .champ-remarque {
+    width: 40vh;
+    color: white !important;
+  }
+  
+  .categorie {
+    width: 15vh;
+  }
+  .champ-theme{
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .stuff-grid {
+    background-image: url('../../assets/one-piece.jpg');
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-size: cover;
+    //justify-content: center;
+  }
+  .addNote{
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .note-pane {
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    width: 280px;
+    max-height: 450px;
+    font-size: medium;
+    margin: 10px;
+    background-size: 40vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 1px 1px 3px #333333;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+  .test{
+    opacity:0;
+  }
+  .note-info {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    h3 {
+      font-weight: 800;
+    }
+    h5 {
+      color: #6eb5ff;
+    }
+  }
+  
+  .note-partie0{
+    background-color: #070000;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .note-partie1{
+    margin-top:3px;
+    padding-left:7px;
+    padding-right:7px;
+    background-color: #110000;
+  
+  }
+  .note-partie2{
+    margin-top:3px;
+    padding-left:7px;
+    padding-right:7px;
+    background-color: #161100;
+  }
+  

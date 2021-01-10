@@ -22,7 +22,22 @@
     transform: scale(1.10);
   }
 }
-
+.biere-pane-nico{
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  width: 270px;
+  height: 270px;
+  margin: 1%;
+  background-size: 40vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../../assets/katakuri.png');  
+  box-shadow: 1px 1px 3px #111111;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.10);
+  }
+}
 .biere-info {
   width: 100%;
   position: absolute;

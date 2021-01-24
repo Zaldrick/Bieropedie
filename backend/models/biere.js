@@ -6,6 +6,7 @@ const biereSchema = mongoose.Schema({
   pays: { type: String, required: true },
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
+  saison: { type: Number, required: true },
 });
 
 module.exports = mongoose.model('Biere', biereSchema);

@@ -1,31 +1,35 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<p class="text-center" *ngIf="bieres.length <= 0 && !loading">Aucune bières</p>
-
-<div class="stuff-grid" *ngIf="bieres.length >= 0">
-  <div class="biere-pane-nico" *ngIf="this.userName == 'Nico'"
-  (click)="joyeuxAnniversaire()">
-  <div class="biere-info">
-  <h4>
-  Katakuri Pale Ale
-  </h4>
-  <h6>Blonde Mochi</h6>
-  <h6>Île du Blé</h6>
+<div flex-container >
+  <div *ngIf="!loading" class="btn-group saison">
+    <!--<button class="btn btn-link test" (click)="onGoBack()"><< Retour</button>-->
+        <button class="btn btn-link" (click)="onSaisonClicked(-1)">Toutes les Bières</button>
+        <button class="btn btn-link" (click)="onSaisonClicked(1)">Saison 1</button>
+        <button class="btn btn-link" (click)="onSaisonClicked(2)">Saison 2</button>
+        <button class="btn btn-link" (click)="onSaisonClicked(3)">Saison 3</button>
   </div>
-  </div>
+  <h1 class="text-center" *ngIf="bieresFiltered.length <= 0 && !loading">Aucune bières</h1>
+  <div class="stuff-grid" *ngIf="bieres.length >= 0">
 
+    <div class="biere-pane-nico" *ngIf="this.userName == 'Nico'" (click)="joyeuxAnniversaire()">
+      <div class="biere-info">
+        <h4>Katakuri Pale Ale</h4>
+        <h6>Blonde Mochi</h6>
+        <h6>Île du Blé</h6>
+      </div>
+    </div>
 
-
-  <div class="biere-pane"
-       *ngFor="let biere of bieres"
-       [ngClass]="{'open': biere._id === chosenId}"
-       [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
-       (click)="onProductClicked(biere._id)">
-    <div class="biere-info">
-      <h4>
-        {{ biere.nom }}
-      </h4>
-      <h6>{{ biere.type}}</h6>
-      <h6>{{ biere.pays}}</h6>
+    <div *ngFor="let biere of bieresFiltered" class ="border-biere">
+        <div class="biere-pane"
+            *ngIf="saisonSelected === -1 || saisonSelected === biere.saison"
+            [ngClass]="{'open': biere._id === chosenId}"
+            [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
+            (click)="onProductClicked(biere._id)">
+          <div class="biere-info" >
+            <h4>{{ biere.nom }}</h4>
+            <h6>{{ biere.type}}</h6>
+            <h6>{{ biere.pays}}</h6>
+          </div>
+        </div>
     </div>
   </div>
 </div>

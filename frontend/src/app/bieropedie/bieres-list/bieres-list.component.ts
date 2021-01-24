@@ -14,8 +14,10 @@ import { GlobalConstants } from 'src/app/common/global-constants';
 export class BieresListComponent implements OnInit, OnDestroy {
 
   public bieres: Biere[] = [];
+  public bieresFiltered: Biere[] = [];
   public loading: boolean;
   public userName: string;
+  public saisonSelected: Number;
   private bieresSub: Subscription;
   constructor(private state: StateService,
               private bieresService: BieresService,
@@ -24,18 +26,31 @@ export class BieresListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loading = true;
+    this.saisonSelected = -1;
     this.userName = this.auth.userName ? this.auth.userName : 'Gars Random';
     this.bieresSub = this.bieresService.bieres$.subscribe(
       (bieres) => {
         this.bieres = bieres;
+        this.bieresFiltered = this.bieres;
         this.loading = false;
       }
     );
     this.bieresService.getBieres();
+
   }
 
   onProductClicked(id: string) {
     this.router.navigate(['/bieropedie/biere/' + id]);
+  }
+
+  onSaisonClicked(saisonFiltre:Number){
+    if (saisonFiltre === -1){
+      this.bieresFiltered = this.bieres;
+    } else {
+      this.bieresFiltered = this.bieres.filter(function(obj) {
+        return obj.saison == saisonFiltre;
+      })
+    }
   }
 
   joyeuxAnniversaire(id: string) {

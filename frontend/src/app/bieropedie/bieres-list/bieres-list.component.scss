@@ -1,10 +1,27 @@
 .stuff-grid {
-  width: 80%;
+  width: 100%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   background-color: #333333;
+}
+#pc1 {
+  width:100%;
+  transition: all 0.2s ease-in-out;
+}
+#pc1.hide {
+  width:0%;
+}
+
+.saison{
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #333333;
+}
+
+.border-biere {
+  padding:0.2%;
 }
 
 .biere-pane {
@@ -12,7 +29,7 @@
   position: relative;
   width: 270px;
   height: 270px;
-  margin: 1%;
+  margin: 10px;
   background-size: 40vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -38,6 +55,13 @@
     transform: scale(1.10);
   }
 }
+
+.flex-container {
+  display: flex;
+  //background-color : #333333;
+  //background-image: url('../../../assets/rustic.png');
+}
+
 .biere-info {
   width: 100%;
   position: absolute;

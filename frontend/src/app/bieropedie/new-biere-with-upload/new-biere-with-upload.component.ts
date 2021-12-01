@@ -32,7 +32,8 @@ export class NewBiereWithUploadComponent implements OnInit {
       type: [null, Validators.required],
       pays: [null, Validators.required],
       description: [null, Validators.required],
-      image: [null, Validators.required, mimeType]
+      image: [null, Validators.required, mimeType],
+      saison: [null, Validators.required]
     });
     this.userId = this.auth.userId;
   }
@@ -45,6 +46,7 @@ export class NewBiereWithUploadComponent implements OnInit {
     biere.pays = this.biereForm.get('pays').value;
     // this.userId;
     biere.description = this.biereForm.get('description').value;
+    biere.saison = this.biereForm.get('saison').value;
     biere.imageUrl = '';
     this.bieresService.createNewBiereWithFile(biere, this.biereForm.get('image').value).then(
       () => {

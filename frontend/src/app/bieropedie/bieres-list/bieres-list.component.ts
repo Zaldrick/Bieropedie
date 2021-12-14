@@ -21,6 +21,7 @@ export class BieresListComponent implements OnInit, OnDestroy {
   public userName: string;
   public saisonSelected: Number;
   private bieresSub: Subscription;
+  public sorted:boolean=false;
   constructor(private state: StateService,
               private bieresService: BieresService,
               private router: Router,
@@ -52,6 +53,16 @@ export class BieresListComponent implements OnInit, OnDestroy {
       this.bieresFiltered = this.bieres.filter(function(obj) {
         return obj.saison == saisonFiltre;
       })
+    }
+  }
+
+  onSortClicked(){
+    if (!this.sorted){
+      this.bieresFiltered.sort((a,b) => b.moyenne-a.moyenne);
+      this.sorted=true;
+    }else{
+      this.bieresFiltered.sort((a,b) => a.moyenne-b.moyenne);
+      this.sorted=false;
     }
   }
 

@@ -4,7 +4,9 @@ import { BieresService } from '../../services/bieres.service';
 import { Subscription } from 'rxjs';
 import { Biere } from '../../models/Biere.model';
 import { Router } from '@angular/router';
+import { Note } from '../../models/Note.model';
 import { AuthService } from '../../services/auth.service';
+import { NotesService } from '../../services/notes.service';
 import { GlobalConstants } from 'src/app/common/global-constants';
 @Component({
   selector: 'app-bieres-list',
@@ -22,6 +24,7 @@ export class BieresListComponent implements OnInit, OnDestroy {
   constructor(private state: StateService,
               private bieresService: BieresService,
               private router: Router,
+              private notesService: NotesService,
               private auth: AuthService) { }
 
   ngOnInit() {
@@ -35,8 +38,7 @@ export class BieresListComponent implements OnInit, OnDestroy {
         this.loading = false;
       }
     );
-    this.bieresService.getBieres();
-
+    this.bieresService.getBieresNotes();
   }
 
   onProductClicked(id: string) {

@@ -77,3 +77,19 @@
     color: #6eb5ff;
   }
 }
+
+/* Pattern styles */
+.bottom-biere{
+    display: inline-block;
+    vertical-align: left;
+    width: 80%;
+}
+
+.bottom-biere-note{
+    display: inline-block;
+    vertical-align: bottom;
+    position:absolute;
+    width: 20%;
+    right:0;
+    bottom:0;
+}

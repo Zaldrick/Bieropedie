@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NotesService } from './services/notes.service';
 import { AppComponent } from './app.component';
 import { BieropedieComponent } from './bieropedie/bieropedie.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +44,7 @@ import { JoyeuxAnniversaireComponent } from './joyeux-anniversaire/joyeux-annive
     HttpClientModule,
     MaterialModule,
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},NotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,5 +5,6 @@ export class Biere {
   pays: string;
   description: string;
   imageUrl: string;
-  saison: Number;
+  saison: number;
+  moyenne: number;
 }

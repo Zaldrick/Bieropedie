@@ -13,7 +13,7 @@ export class NotesService {
 
   private notes: Note[] = [];
   public notes$ = new Subject<Note[]>();
-
+  public moyenne:number;
   getNotes() {
     this.http.get(GlobalConstants.apiURL + '/api/notes').subscribe(
       (notes: Note[]) => {
@@ -45,7 +45,8 @@ export class NotesService {
     });
   }
 
-  getAllNotesByBiere(id: string) {
+  
+  getAllNotesByBiere(id: string) {   
     return new Promise((resolve, reject) => {
       this.http.get(GlobalConstants.apiURL + '/api/notes/allNotes/' + id).subscribe(
         (response) => {
@@ -57,6 +58,26 @@ export class NotesService {
       );
     });
   }
+
+  getMoyenneNoteByBiere(id: string) {   
+    return new Promise((resolve, reject) => {
+      this.http.get(GlobalConstants.apiURL + '/api/notes/allNotes/' + id).subscribe(
+        (notes: Note[]) => {
+          if (notes) {
+            this.notes = notes;
+            this.moyenne=0;
+            notes.forEach(note => {
+            this.moyenne+=(note.notePackaging+note.noteOdeur*3+note.noteMiseEnBouche*5+note.noteRetour*5+note.noteEndurance*5)/19});
+          }
+          resolve(this.moyenne/notes.length);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
 
   createNewNote(note: Note) {
     return new Promise((resolve, reject) => {

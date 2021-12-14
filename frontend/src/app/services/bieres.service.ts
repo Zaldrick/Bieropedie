@@ -3,13 +3,14 @@ import { Subject } from 'rxjs';
 import { Biere } from '../models/Biere.model';
 import { HttpClient } from '@angular/common/http';
 import { GlobalConstants } from '../common/global-constants';
-
+import { NotesService } from './notes.service';
 @Injectable({
   providedIn: 'root'
 })
 export class BieresService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private notesService: NotesService) {}
 
   private bieres: Biere[] = [];
   public bieres$ = new Subject<Biere[]>();
@@ -25,6 +26,28 @@ export class BieresService {
           this.emitBieres();
         }
       },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getBieresNotes() {
+    this.http.get(GlobalConstants.apiURL + '/api/bieres').subscribe(
+      (bieres: Biere[]) => {
+        if (bieres) {
+          this.bieres = bieres;
+          this.bieres.forEach( (currentValue, index) => {
+            this.bieres[index].imageUrl = GlobalConstants.apiURL + this.bieres[index].imageUrl;
+              this.notesService.getMoyenneNoteByBiere(this.bieres[index]._id).then(
+                (moyenne: number) => {
+                  this.bieres[index].moyenne=moyenne;
+                }
+              );
+          });
+          this.emitBieres();
+      }
+    },
       (error) => {
         console.log(error);
       }

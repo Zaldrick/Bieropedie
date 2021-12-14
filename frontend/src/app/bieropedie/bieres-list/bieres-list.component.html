@@ -11,13 +11,13 @@
   <h1 class="text-center" *ngIf="bieresFiltered.length <= 0 && !loading">Aucune bières</h1>
   <div class="stuff-grid" *ngIf="bieres.length >= 0">
 
-    <div class="biere-pane-nico" *ngIf="this.userName == 'Nico'" (click)="joyeuxAnniversaire()">
+    <!--<div class="biere-pane-nico" *ngIf="this.userName == 'Nico'" (click)="joyeuxAnniversaire()">
       <div class="biere-info">
         <h4>Katakuri Pale Ale</h4>
         <h6>Blonde Mochi</h6>
         <h6>Île du Blé</h6>
       </div>
-    </div>
+    </div>-->
 
     <div *ngFor="let biere of bieresFiltered" class ="border-biere">
         <div class="biere-pane"
@@ -27,9 +27,12 @@
             (click)="onProductClicked(biere._id)">
           <div class="biere-info" >
             <h4>{{ biere.nom }}</h4>
-            <h6>{{ biere.type}}</h6>
-            <h6>{{ biere.pays}}</h6>
-          </div>
+
+              <div class="bottom-biere">
+                <h6>{{biere.type}}</h6>
+                <h6>{{biere.pays}}</h6>
+              </div>
+              <h1 class="bottom-biere-note"> {{biere.moyenne| number: '1.0-0'}} </h1>
         </div>
     </div>
   </div>

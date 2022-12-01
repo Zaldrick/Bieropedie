@@ -6,7 +6,8 @@
         <button class="btn btn-link" (click)="onSaisonClicked(1)">Saison 1</button>
         <button class="btn btn-link" (click)="onSaisonClicked(2)">Saison 2</button>
         <button class="btn btn-link" (click)="onSaisonClicked(3)">Saison 3</button>
-        <button class="btn btn-link" (click)="onSaisonClicked(4)">Beery Christmas</button>
+        <button class="btn btn-link" (click)="onSaisonClicked(4)">Beery Christmas 2021</button>
+        <button class="btn btn-link" (click)="onSaisonClicked(5)">Beery Christmas 2022</button>
         <button class="btn btn-link" (click)="onSortClicked()">Tri ?</button>
   </div>
   <h1 class="text-center" *ngIf="bieresFiltered.length <= 0 && !loading">Aucune bières</h1>
@@ -26,6 +27,7 @@
             [ngClass]="{'open': biere._id === chosenId}"
             [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
             (click)="onProductClicked(biere._id)">
+            <h1>{{getPersonnalNote(biere._id)}}</h1>
           <div class="biere-info" >
             <h4>{{ biere.nom }}</h4>
 

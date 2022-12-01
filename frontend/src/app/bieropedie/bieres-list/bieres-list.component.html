@@ -27,7 +27,6 @@
             [ngClass]="{'open': biere._id === chosenId}"
             [ngStyle]="{'background-image': 'url(' + biere.imageUrl + ')'}"
             (click)="onProductClicked(biere._id)">
-            <h1>{{getPersonnalNote(biere._id)}}</h1>
           <div class="biere-info" >
             <h4>{{ biere.nom }}</h4>
 
